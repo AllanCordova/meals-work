@@ -1,26 +1,42 @@
+import theme from "@/constants/theme";
 import { Stack } from "expo-router";
 import React from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function LoginScreen() {
   return (
-    <>
-      {}
-      <Stack.Screen options={{ title: "Acessar Conta" }} />
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
+      <Stack.Screen
+        options={{
+          title: "Acessar Conta",
+          headerStyle: { backgroundColor: theme.colors.surface },
+          headerTintColor: theme.colors.primary,
+        }}
+      />
+
+      <View style={styles.content}>
         <Text style={styles.title}>Bem-vindo de volta!</Text>
         <Text style={styles.subtitle}>Faça login para continuar</Text>
 
         <TextInput
           style={styles.input}
           placeholder="Seu e-mail"
-          placeholderTextColor="#8E8E93"
+          placeholderTextColor={theme.colors.placeholder}
           keyboardType="email-address"
+          autoCapitalize="none"
         />
         <TextInput
           style={styles.input}
           placeholder="Sua senha"
-          placeholderTextColor="#8E8E93"
+          placeholderTextColor={theme.colors.placeholder}
           secureTextEntry
         />
 
@@ -28,51 +44,51 @@ export default function LoginScreen() {
           <Text style={styles.buttonText}>Entrar</Text>
         </Pressable>
       </View>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#121212",
-    padding: 20,
+    backgroundColor: theme.colors.background,
+  },
+  content: {
+    flex: 1,
     justifyContent: "center",
+    padding: theme.spacing.large,
   },
   title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: "#FFFFFF",
+    fontSize: theme.fontSizes.xlarge,
+    color: theme.colors.textPrimary,
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: theme.spacing.small,
   },
   subtitle: {
-    fontSize: 16,
-    color: "#8E8E93",
+    fontSize: theme.fontSizes.medium,
+    color: theme.colors.textSecondary,
     textAlign: "center",
-    marginBottom: 30,
+    marginBottom: theme.spacing.xlarge,
   },
   input: {
-    backgroundColor: "#1C1C1E",
-    color: "#FFFFFF",
+    backgroundColor: theme.colors.surface,
+    color: theme.colors.textPrimary,
     borderWidth: 1,
-    borderColor: "#4A4A4A",
-    borderRadius: 12,
-    paddingHorizontal: 15,
-    paddingVertical: 14,
-    fontSize: 16,
-    marginBottom: 15,
+    borderColor: theme.colors.border,
+    borderRadius: theme.spacing.small,
+    padding: theme.spacing.medium,
+    fontSize: theme.fontSizes.medium,
+    marginBottom: theme.spacing.medium,
   },
   button: {
-    backgroundColor: "#007AFF",
-    paddingVertical: 14,
-    borderRadius: 12,
+    backgroundColor: theme.colors.primary,
+    padding: theme.spacing.medium,
+    borderRadius: theme.spacing.small,
     alignItems: "center",
-    marginTop: 10,
+    marginTop: theme.spacing.small,
   },
   buttonText: {
     color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: theme.fontSizes.medium,
   },
 });

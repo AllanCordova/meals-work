@@ -1,10 +1,12 @@
 import Home from "@/components/Home";
+import theme from "@/constants/theme";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, View } from "react-native";
 
-export default function index() {
+export default function Index() {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <Home />
     </View>
   );
@@ -13,6 +15,6 @@ export default function index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F0F4F8",
+    backgroundColor: theme.colors.background,
   },
 });
