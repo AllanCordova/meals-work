@@ -1,3 +1,4 @@
+import theme from "@/constants/theme";
 import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
@@ -9,20 +10,23 @@ export default function Form(prop: PropType) {
   const [name, setName] = useState<string>("");
 
   const handleSubmit = () => {
-    prop.foodName(name);
-    setName("");
+    if (name.trim()) {
+      prop.foodName(name.trim());
+      setName("");
+    }
   };
 
   return (
     <View style={styles.formContainer}>
-      <Text style={styles.title}>search your prefer food</Text>
+      <Text style={styles.title}>Procure sua comida preferida</Text>
 
       <TextInput
         style={styles.input}
         placeholder="Ex: Pizza, Lasagna..."
-        placeholderTextColor="#8E8E93"
+        placeholderTextColor={theme.colors.placeholder}
         value={name}
         onChangeText={setName}
+        onSubmitEditing={handleSubmit}
       />
 
       <Pressable style={styles.button} onPress={handleSubmit}>
@@ -34,37 +38,35 @@ export default function Form(prop: PropType) {
 
 const styles = StyleSheet.create({
   formContainer: {
-    padding: 20,
+    padding: theme.spacing.large,
     width: "100%",
   },
   title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    color: "#FFFFFF",
+    fontSize: theme.fontSizes.xlarge,
+    color: theme.colors.textPrimary,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: theme.spacing.large,
+    textTransform: "capitalize",
   },
   input: {
-    backgroundColor: "#1C1C1E",
-    color: "#FFFFFF",
+    backgroundColor: theme.colors.surface,
+    color: theme.colors.textPrimary,
     borderWidth: 1,
-    borderColor: "#4A4A4A",
-    borderRadius: 12,
-    paddingHorizontal: 15,
-    paddingVertical: 14,
-    fontSize: 16,
-    marginBottom: 20,
+    borderColor: theme.colors.border,
+    borderRadius: theme.spacing.small,
+    padding: theme.spacing.medium,
+    fontSize: theme.fontSizes.medium,
+    marginBottom: theme.spacing.large,
   },
   button: {
-    backgroundColor: "#007AFF",
-    paddingVertical: 14,
-    borderRadius: 12,
+    backgroundColor: theme.colors.primary,
+    padding: theme.spacing.medium,
+    borderRadius: theme.spacing.small,
     alignItems: "center",
     justifyContent: "center",
   },
   buttonText: {
     color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: theme.fontSizes.medium,
   },
 });
